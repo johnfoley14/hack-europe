@@ -2,7 +2,7 @@
   <img src="https://img.icons8.com/fluency/96/water.png" alt="Tidepool Logo" width="80" height="80"/>
 </p>
 
-<h1 align="center">Tidepool</h1>
+<h1 align="center">Tidepool!</h1>
 
 <p align="center">
   <strong>Community-powered funding that only charges when goals are met</strong>
