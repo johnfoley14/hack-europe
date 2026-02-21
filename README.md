@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# Tidepool
 
-## Project info
+A community funding platform where pledges are held (not charged) until a goal is reached. If the goal is met, everyone pays. If not, nobody does.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Project Structure
 
-## How can I edit this code?
+```
+hack-europe/
+├── frontend/          # React/Vite/TypeScript frontend
+├── backend/           # Ruby on Rails API backend
+├── .github/           # CI/CD workflows
+└── README.md
+```
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+### Frontend
+- **React 18** with TypeScript
+- **Vite** for fast development and builds
+- **TanStack Query** for data fetching
+- **Tailwind CSS** + **shadcn/ui** for styling
+- **Mapbox GL** for location features
+- **Framer Motion** for animations
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Backend
+- **Ruby on Rails 8** (API mode)
+- **PostgreSQL** with UUID primary keys
+- **RSpec** for testing
 
-Changes made via Lovable will be committed automatically to this repo.
+## Development Setup
 
-**Use your preferred IDE**
+### Prerequisites
+- Node.js 18+ (or Bun)
+- Ruby 3.2+
+- PostgreSQL 14+
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Quick Start
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# Clone the repository
+git clone https://github.com/your-username/hack-europe.git
+cd hack-europe
 
-Follow these steps:
+# Backend setup
+cd backend
+bundle install
+rails db:create db:migrate db:seed
+rails server -p 3000
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Frontend setup (in a new terminal)
+cd frontend
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The frontend runs at `http://localhost:8080` and the API at `http://localhost:3000`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Environment Variables
 
-**Use GitHub Codespaces**
+Create a `.env` file in the `frontend/` directory:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```env
+VITE_MAPBOX_TOKEN=your_mapbox_token
+VITE_API_URL=http://localhost:3000/api/v1
+```
 
-## What technologies are used for this project?
+Create a `.env` file in the `backend/` directory:
 
-This project is built with:
+```env
+FRONTEND_URL=http://localhost:8080
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## API Endpoints
 
-## How can I deploy this project?
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/initiatives` | List all initiatives (supports `?status=` and `?search=`) |
+| GET | `/api/v1/initiatives/:id` | Get initiative details with pledgers and updates |
+| POST | `/api/v1/initiatives` | Create a new initiative |
+| POST | `/api/v1/initiatives/:id/pledges` | Create a pledge for an initiative |
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Running Tests
 
-## Can I connect a custom domain to my Lovable project?
+### Backend
+```bash
+cd backend
+bundle exec rspec
+```
 
-Yes, you can!
+### Frontend
+```bash
+cd frontend
+npm test
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Deployment
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The project includes GitHub Actions workflows for CI/CD:
+- **Backend**: Runs RSpec tests on push
+- **Frontend**: Runs Vitest tests and builds on push
+
+## License
+
+MIT
