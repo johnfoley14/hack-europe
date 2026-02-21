@@ -1,10 +1,11 @@
-import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { mockInitiatives, type InitiativeStatus } from '@/lib/mock-data';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { useInitiatives } from '@/hooks/useInitiatives';
+import type { InitiativeStatus } from '@/lib/types';
 import { StatusBadge } from '@/components/StatusBadge';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Filter, List, X } from 'lucide-react';
+import { Filter, List, X, Loader2 } from 'lucide-react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -24,6 +25,7 @@ const statusColor: Record<string, string> = {
 };
 
 const GlobeMap = () => {
+  const { data: initiatives = [], isLoading } = useInitiatives();
   const [activeFilter, setActiveFilter] = useState<'all' | InitiativeStatus>('all');
   const [selectedPin, setSelectedPin] = useState<string | null>(null);
   const [showList, setShowList] = useState(false);
@@ -33,12 +35,12 @@ const GlobeMap = () => {
 
   const filtered = useMemo(() =>
     activeFilter === 'all'
-      ? mockInitiatives
-      : mockInitiatives.filter((i) => i.status === activeFilter),
-    [activeFilter]
+      ? initiatives
+      : initiatives.filter((i) => i.status === activeFilter),
+    [activeFilter, initiatives]
   );
 
-  const selected = mockInitiatives.find((i) => i.id === selectedPin);
+  const selected = initiatives.find((i) => i.id === selectedPin);
 
   // Initialize map
   useEffect(() => {
@@ -126,6 +128,13 @@ const GlobeMap = () => {
     <div className="h-[calc(100vh-4rem)] relative flex" style={{ background: 'hsl(220 25% 6%)' }}>
       <div className="flex-1 relative overflow-hidden">
         <div ref={mapContainer} className="absolute inset-0" />
+
+        {/* Loading overlay */}
+        {isLoading && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-background/50 backdrop-blur-sm">
+            <Loader2 className="w-8 h-8 text-primary animate-spin" />
+          </div>
+        )}
 
         {/* Pin info card */}
         {selected && (
