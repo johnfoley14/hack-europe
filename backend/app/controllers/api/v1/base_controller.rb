@@ -7,7 +7,7 @@ module Api
       private
 
       def not_found
-        render json: { error: 'Record not found' }, status: :not_found
+        render json: { error: "Record not found" }, status: :not_found
       end
 
       def unprocessable_entity(exception)
@@ -15,7 +15,7 @@ module Api
       end
 
       def current_user
-        @current_user ||= User.find_by(id: request.headers['X-User-Id'])
+        @current_user ||= User.find_by(id: request.headers["X-User-Id"])
       end
     end
   end

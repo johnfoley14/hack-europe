@@ -4,7 +4,7 @@ class PledgeCaptureService
       next unless pledge.stripe_payment_intent_id
 
       Stripe::PaymentIntent.capture(pledge.stripe_payment_intent_id)
-      pledge.update!(status: 'charged')
+      pledge.update!(status: "charged")
     rescue Stripe::StripeError => e
       Rails.logger.error "Failed to capture pledge #{pledge.id}: #{e.message}"
     end

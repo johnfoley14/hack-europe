@@ -2,7 +2,7 @@ class Pledge < ApplicationRecord
   belongs_to :initiative
   belongs_to :user
 
-  enum :status, { held: 'held', charged: 'charged', refunded: 'refunded' }
+  enum :status, { held: "held", charged: "charged", refunded: "refunded" }
 
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validate :initiative_must_be_open, on: :create
@@ -14,7 +14,7 @@ class Pledge < ApplicationRecord
   private
 
   def initiative_must_be_open
-    errors.add(:initiative, 'is not accepting pledges') unless initiative&.open?
+    errors.add(:initiative, "is not accepting pledges") unless initiative&.open?
   end
 
   def amount_within_remaining

@@ -31,11 +31,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_000006) do
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.string "visibility", default: "public"
-    t.index ["deadline"], name: "index_initiatives_on_deadline"
-    t.index ["invite_token"], name: "index_initiatives_on_invite_token", unique: true
-    t.index ["organizer_id"], name: "index_initiatives_on_organizer_id"
-    t.index ["status"], name: "index_initiatives_on_status"
-    t.index ["visibility"], name: "index_initiatives_on_visibility"
+    t.index [ "deadline" ], name: "index_initiatives_on_deadline"
+    t.index [ "invite_token" ], name: "index_initiatives_on_invite_token", unique: true
+    t.index [ "organizer_id" ], name: "index_initiatives_on_organizer_id"
+    t.index [ "status" ], name: "index_initiatives_on_status"
+    t.index [ "visibility" ], name: "index_initiatives_on_visibility"
   end
 
   create_table "pledges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -46,10 +46,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_000006) do
     t.string "stripe_payment_intent_id"
     t.datetime "updated_at", null: false
     t.uuid "user_id", null: false
-    t.index ["initiative_id", "user_id"], name: "index_pledges_on_initiative_id_and_user_id"
-    t.index ["initiative_id"], name: "index_pledges_on_initiative_id"
-    t.index ["stripe_payment_intent_id"], name: "index_pledges_on_stripe_payment_intent_id", unique: true
-    t.index ["user_id"], name: "index_pledges_on_user_id"
+    t.index [ "initiative_id", "user_id" ], name: "index_pledges_on_initiative_id_and_user_id"
+    t.index [ "initiative_id" ], name: "index_pledges_on_initiative_id"
+    t.index [ "stripe_payment_intent_id" ], name: "index_pledges_on_stripe_payment_intent_id", unique: true
+    t.index [ "user_id" ], name: "index_pledges_on_user_id"
   end
 
   create_table "updates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -57,7 +57,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_000006) do
     t.uuid "initiative_id", null: false
     t.text "text", null: false
     t.datetime "updated_at", null: false
-    t.index ["initiative_id"], name: "index_updates_on_initiative_id"
+    t.index [ "initiative_id" ], name: "index_updates_on_initiative_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -67,7 +67,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_000006) do
     t.string "name", null: false
     t.string "password_digest"
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index [ "email" ], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "initiatives", "users", column: "organizer_id"

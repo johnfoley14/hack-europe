@@ -6,8 +6,8 @@ module Api
 
         payment_intent = Stripe::PaymentIntent.create(
           amount: amount_cents,
-          currency: 'eur',
-          capture_method: 'manual',
+          currency: "eur",
+          capture_method: "manual",
           metadata: { initiative_id: params[:initiative_id] }
         )
 

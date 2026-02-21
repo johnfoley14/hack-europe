@@ -8,6 +8,6 @@ class CreatePledges < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :pledges, [:initiative_id, :user_id]
+    add_index :pledges, [ :initiative_id, :user_id ]
   end
 end

@@ -14,7 +14,7 @@ users = [
   User.create!(name: 'Emma White', email: 'emma@example.com'),
   User.create!(name: "Ciarán O'Brien", email: 'ciaran@example.com'),
   User.create!(name: 'Niamh Gallagher', email: 'niamh@example.com'),
-  User.create!(name: 'Declan Murphy', email: 'declan@example.com'),
+  User.create!(name: 'Declan Murphy', email: 'declan@example.com')
 ]
 
 pledgers = [
@@ -23,7 +23,7 @@ pledgers = [
   User.create!(name: 'Tom R.', email: 'tom@example.com'),
   User.create!(name: 'Lisa K.', email: 'lisa@example.com'),
   User.create!(name: 'Anna B.', email: 'anna@example.com'),
-  User.create!(name: 'Chris M.', email: 'chris@example.com'),
+  User.create!(name: 'Chris M.', email: 'chris@example.com')
 ]
 
 puts "Creating initiatives..."
