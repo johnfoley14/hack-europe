@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #1B4332;
+  --color-forest-light: #2D6A4F;
+  --color-forest-dark: #0F2A1D;
+  --color-parchment: #FAF6F1;
+  --color-parchment-dark: #F0E9DF;
+  --color-amber: #D4640A;
+  --color-amber-light: #E8822E;
+  --color-amber-dark: #B5520A;
+  --color-ink: #1A1A1A;
+  --color-emerald: #10B981;
+  --color-emerald-light: #34D399;
+  --color-red: #DC2626;
+  --color-red-light: #EF4444;
+  --color-sand: #E8E0D4;
+  --color-sand-dark: #D4C9B9;
+  --color-stone: #8B7E6A;
+  --color-stone-light: #A89F8E;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-parchment);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grain overlay */
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Warm card shadows */
+.card-shadow {
+  box-shadow: 0 1px 3px rgba(139, 126, 106, 0.12), 0 4px 12px rgba(139, 126, 106, 0.08);
+}
+
+.card-shadow-lg {
+  box-shadow: 0 4px 12px rgba(139, 126, 106, 0.15), 0 12px 32px rgba(139, 126, 106, 0.1);
+}
+
+.card-shadow-hover {
+  box-shadow: 0 8px 24px rgba(139, 126, 106, 0.18), 0 16px 48px rgba(139, 126, 106, 0.12);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stone);
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  from { width: 0; }
+}
+
+.animate-progress {
+  animation: progress-fill 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Pulse for countdown urgency */
+@keyframes urgency-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-urgency {
+  animation: urgency-pulse 1.5s ease-in-out infinite;
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Globe canvas */
+.globe-canvas canvas {
+  outline: none !important;
+}
+
+/* Topo pattern background */
+.topo-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23E8E0D4' stroke-width='0.5'%3E%3Cpath d='M30 0c16.569 0 30 13.431 30 30 0 16.569-13.431 30-30 30C13.431 60 0 46.569 0 30 0 13.431 13.431 0 30 0zm0 10c11.046 0 20 8.954 20 20s-8.954 20-20 20S10 41.046 10 30s8.954-20 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
