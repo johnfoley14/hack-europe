@@ -43,7 +43,8 @@ RSpec.describe 'Api::V1::Initiatives::Pledges', type: :request do
     end
 
     it 'marks initiative as funded when goal is reached' do
-      initiative.update!(held_amount: 950)
+      # Create actual pledges totaling 950 (held_amount is calculated from pledges)
+      create(:pledge, initiative: initiative, amount: 950)
 
       post "/api/v1/initiatives/#{initiative.id}/pledges", params: valid_params
 
