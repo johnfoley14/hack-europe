@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 140 20% 8%;
+    --foreground: 40 20% 92%;
+
+    --card: 140 18% 12%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 140 18% 12%;
+    --popover-foreground: 40 20% 92%;
+
+    --primary: 28 85% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 15% 16%;
+    --secondary-foreground: 40 20% 85%;
+
+    --muted: 140 10% 20%;
+    --muted-foreground: 140 10% 55%;
+
+    --accent: 140 12% 18%;
+    --accent-foreground: 40 20% 92%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --open: 28 85% 55%;
+    --open-foreground: 0 0% 100%;
+
+    --funded: 152 60% 42%;
+    --funded-foreground: 0 0% 100%;
+
+    --failed: 0 72% 51%;
+    --failed-foreground: 0 0% 100%;
+
+    --ending-soon: 38 92% 50%;
+    --ending-soon-foreground: 0 0% 100%;
+
+    --border: 140 10% 20%;
+    --input: 140 10% 20%;
+    --ring: 28 85% 55%;
+
+    --radius: 0.75rem;
+
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 4px 16px -2px hsl(0 0% 0% / 0.15);
+    --shadow-card-hover: 0 4px 12px 0 hsl(0 0% 0% / 0.3), 0 8px 32px -4px hsl(0 0% 0% / 0.2);
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-serif: 'Instrument Serif', serif;
+
+    --hero-bg: 140 30% 16%;
+    --hero-foreground: 40 20% 92%;
+    --hero-accent: 28 85% 55%;
+    --hero-muted: 140 10% 55%;
+
+    --sidebar-background: 140 18% 10%;
+    --sidebar-foreground: 40 20% 85%;
+    --sidebar-primary: 28 85% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 140 12% 16%;
+    --sidebar-accent-foreground: 40 20% 92%;
+    --sidebar-border: 140 10% 20%;
+    --sidebar-ring: 28 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-family: var(--font-display);
+  }
+
+  .text-body {
+    font-family: var(--font-body);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .progress-bar-fill {
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
