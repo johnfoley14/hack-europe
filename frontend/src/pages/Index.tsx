@@ -52,8 +52,8 @@ const Index = () => {
             className="max-w-xl mx-auto text-base md:text-lg mb-10 leading-relaxed"
             style={{ color: 'hsl(var(--hero-muted))' }}
           >
-            When your community pledges together, funds are held — not
-            charged — until the goal is met. If it works, everyone pays. If not, nobody does.
+            When your community pledges together, funds are held, not
+            charged, until the goal is met. If it works, everyone pays. If not, nobody does.
           </p>
 
           <div className="flex items-center justify-center gap-3 mb-16">
@@ -88,7 +88,7 @@ const Index = () => {
           <div className="flex items-center justify-center gap-10 md:gap-16">
             {[
               { icon: Users, value: '2,400+', label: 'Community members' },
-              { icon: Globe, value: `£${Math.round(totalHeld / 1000)}K`, label: 'Total pledged' },
+              { icon: Globe, value: `€${Math.round(totalHeld / 1000)}K`, label: 'Total pledged' },
               { icon: Zap, value: '89%', label: 'Success rate' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">

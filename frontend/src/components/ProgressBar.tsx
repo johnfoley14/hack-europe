@@ -31,7 +31,7 @@ export const ProgressBar = ({ current, goal, status, size = 'md', showLabel = tr
       </div>
       {showLabel && (
         <div className="flex justify-between mt-1.5 text-xs text-muted-foreground">
-          <span className="font-medium">£{current.toLocaleString()} held</span>
+          <span className="font-medium">€{current.toLocaleString()} held</span>
           <span>{percent}%</span>
         </div>
       )}

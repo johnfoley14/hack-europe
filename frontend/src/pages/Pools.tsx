@@ -210,10 +210,10 @@ const Pools = () => {
                       />
                       <div className="text-center">
                         <p className="text-lg font-bold font-display text-foreground">
-                          £{featured.heldAmount.toLocaleString()}
+                          €{featured.heldAmount.toLocaleString()}
                         </p>
                         <p className="text-[11px] text-muted-foreground">
-                          of £{featured.goalAmount.toLocaleString()}
+                          of €{featured.goalAmount.toLocaleString()}
                         </p>
                       </div>
                     </div>
@@ -260,10 +260,10 @@ const Pools = () => {
                       <div className="flex items-center gap-3 shrink-0">
                         <div className="text-right">
                           <p className="text-sm font-bold font-display text-foreground">
-                            £{initiative.heldAmount.toLocaleString()}
+                            €{initiative.heldAmount.toLocaleString()}
                           </p>
                           <p className="text-[10px] text-muted-foreground">
-                            of £{initiative.goalAmount.toLocaleString()}
+                            of €{initiative.goalAmount.toLocaleString()}
                           </p>
                         </div>
                         <CircularProgress percent={percent} status={initiative.status} size={40} />

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_21_000005) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_21_000006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -43,10 +43,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_000005) do
     t.datetime "created_at", null: false
     t.uuid "initiative_id", null: false
     t.string "status", default: "held"
+    t.string "stripe_payment_intent_id"
     t.datetime "updated_at", null: false
     t.uuid "user_id", null: false
     t.index ["initiative_id", "user_id"], name: "index_pledges_on_initiative_id_and_user_id"
     t.index ["initiative_id"], name: "index_pledges_on_initiative_id"
+    t.index ["stripe_payment_intent_id"], name: "index_pledges_on_stripe_payment_intent_id", unique: true
     t.index ["user_id"], name: "index_pledges_on_user_id"
   end
 

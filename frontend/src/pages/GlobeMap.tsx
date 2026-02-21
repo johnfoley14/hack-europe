@@ -29,6 +29,7 @@ const GlobeMap = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | InitiativeStatus>('all');
   const [selectedPin, setSelectedPin] = useState<string | null>(null);
   const [showList, setShowList] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const markersRef = useRef<mapboxgl.Marker[]>([]);
@@ -65,22 +66,27 @@ const GlobeMap = () => {
       });
     });
 
+    map.on('load', () => {
+      setMapReady(true);
+    });
+
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-right');
     mapRef.current = map;
 
     return () => {
       map.remove();
       mapRef.current = null;
+      setMapReady(false);
     };
   }, []);
 
-  // Update markers when filter changes
+  // Update markers when filter changes or map becomes ready
   useEffect(() => {
     // Clear old markers
     markersRef.current.forEach((m) => m.remove());
     markersRef.current = [];
 
-    if (!mapRef.current) return;
+    if (!mapRef.current || !mapReady) return;
 
     filtered.forEach((initiative) => {
       const color = statusColor[initiative.status] || '#e88c30';
@@ -122,7 +128,7 @@ const GlobeMap = () => {
 
       markersRef.current.push(marker);
     });
-  }, [filtered]);
+  }, [filtered, mapReady]);
 
   return (
     <div className="h-[calc(100vh-4rem)] relative flex" style={{ background: 'hsl(220 25% 6%)' }}>

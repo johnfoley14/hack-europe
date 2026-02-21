@@ -95,8 +95,8 @@ const InitiativeShow = () => {
               <div className="rounded-xl bg-card border border-border p-6">
                 <div className="flex items-end justify-between mb-3">
                   <div>
-                    <p className="text-3xl font-bold font-display">£{held.toLocaleString()}</p>
-                    <p className="text-sm text-muted-foreground">of £{initiative.goalAmount.toLocaleString()} goal</p>
+                    <p className="text-3xl font-bold font-display">€{held.toLocaleString()}</p>
+                    <p className="text-sm text-muted-foreground">of €{initiative.goalAmount.toLocaleString()} goal</p>
                   </div>
                   <CountdownTimer deadline={initiative.deadline} variant="full" />
                 </div>
@@ -142,7 +142,7 @@ const InitiativeShow = () => {
                       </div>
                       <div>
                         <p className="text-sm font-medium">{p.name}</p>
-                        <p className="text-xs text-muted-foreground">£{p.amount.toLocaleString()}</p>
+                        <p className="text-xs text-muted-foreground">€{p.amount.toLocaleString()}</p>
                       </div>
                     </div>
                   ))}

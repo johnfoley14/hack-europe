@@ -15,6 +15,7 @@ class Initiative < ApplicationRecord
 
   before_create :generate_invite_token, if: :private_visibility?
   after_save :check_funding_status, if: :open?
+  after_save :capture_pledges_if_funded
 
   scope :active, -> { where(status: 'open').where('deadline > ?', Time.current) }
   scope :by_status, ->(status) { where(status: status) if status.present? }
@@ -49,6 +50,12 @@ class Initiative < ApplicationRecord
   def check_funding_status
     if held_amount >= goal_amount
       update_column(:status, 'funded')
+    end
+  end
+
+  def capture_pledges_if_funded
+    if saved_change_to_status? && status == 'funded'
+      PledgeCaptureService.capture_all(self)
     end
   end
 end

@@ -210,7 +210,7 @@ const CreateInitiative = () => {
                   </span>
                 </Label>
                 <div className="relative mt-1">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">£</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">€</span>
                   <Input id="goal" type="number" value={goal} onChange={(e) => setGoal(e.target.value)} placeholder="5,000" className="pl-7" min={1} />
                 </div>
                 {errors.goal && <p className="text-xs text-destructive mt-1">{errors.goal}</p>}

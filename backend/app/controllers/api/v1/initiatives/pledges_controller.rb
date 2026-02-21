@@ -26,7 +26,7 @@ module Api
         private
 
         def pledge_params
-          params.require(:pledge).permit(:amount)
+          params.require(:pledge).permit(:amount, :stripe_payment_intent_id)
         end
 
         def create_pledge_user

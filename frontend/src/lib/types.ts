@@ -58,6 +58,7 @@ export interface CreatePledgeData {
   amount: number;
   name?: string;
   email?: string;
+  stripe_payment_intent_id?: string;
 }
 
 export interface PledgeResponse {

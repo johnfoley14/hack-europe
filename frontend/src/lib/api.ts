@@ -37,7 +37,17 @@ async function fetchApi<T>(
   return response.json();
 }
 
+interface PaymentIntentResponse {
+  clientSecret: string;
+}
+
 export const api = {
+  createPaymentIntent: (amount: number, initiativeId: string) =>
+    fetchApi<PaymentIntentResponse>('/payment_intents', {
+      method: 'POST',
+      body: JSON.stringify({ amount, initiative_id: initiativeId }),
+    }),
+
   getInitiatives: (params?: { status?: string; search?: string }) => {
     const searchParams = new URLSearchParams();
     if (params?.status) searchParams.set('status', params.status);
