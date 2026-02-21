@@ -27,7 +27,6 @@ class Pledge < ApplicationRecord
 
   def update_initiative_held_amount
     new_total = initiative.pledges.held.sum(:amount)
-    initiative.update_column(:held_amount, new_total)
-    initiative.send(:check_funding_status)
+    initiative.update!(held_amount: new_total)
   end
 end
